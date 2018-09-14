@@ -1,0 +1,19 @@
+{
+  "name": "base-code",
+  "version": "1.0.0",
+  "description": "testbed for scouting software",
+  "main": "main.js",
+  "scripts": {
+    "test": "electron ."
+  },
+  "keywords": [
+    "test"
+  ],
+  "author": "Aree Vanier",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^2.0.2",
+    "electron-window-manager": "^1.0.6"
+  },
+  "devDependencies": {}
+}

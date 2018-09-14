@@ -1,0 +1,119 @@
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<script>
+	const {ipcRenderer} = require('electron')
+	var team = null;
+		
+	console.log("INIT");
+	
+	function win_close(){
+		ipcRenderer.send('window-close', "team:"+team);
+	}
+	function win_max() {
+		console.log(team);
+		ipcRenderer.send('window-max', "team:"+team);
+	}
+	function win_min() {
+		ipcRenderer.send('window-min', "team:"+team);
+	}
+	
+	ipcRenderer.on("set-team", function(e, number){
+		console.log(number);
+		window.team = number;
+		ipcRenderer.send("get-data", number);
+	});
+	
+	function start_window(window){
+		ipcRenderer.send('start-window', window);
+		console.log("Starting "+window);
+	}
+	
+	ipcRenderer.on("set-data", function(e, data){
+		console.log*(data);
+	});
+	
+	
+</script>
+
+<body>
+	<header>
+		<a class="close" id="close" onclick="win_close()">&times;</a>
+		<a class="close" id="max" onclick="win_max()">&square;</a>
+		<a class="close" id="min" onclick="win_min()">&#95;</a>
+	</header>
+	
+    
+    <section class="infoPanel left" id="general">
+      
+	  <h1>2708</h1>
+        <ul>
+          <li>
+            Lake Effect Robotics
+          </li>
+          <li>
+            Ranking: 1 (4 RPA)
+          </li>
+          <li>
+            OPR:1000
+          </li>
+          <li>
+            DRP:1000
+          </li>
+        </ul>
+    </section>
+    <img class="robotImage right" src="https://i.imgur.com/uMdFbCvm.jpg">
+    </img>  
+    <section class="infoPanel left" id="pit">
+      <a>&square;</a>
+	  <h1>Pit Scouting</h1>
+        <ul>
+          <li>
+            Mechanism: Elevator
+          </li>
+          <li>
+            Speed: Fast
+          </li>
+          <li>
+            Drivetrain: Ideal
+          </li>
+          <li>
+            Skill: Highly Variable
+          </li>
+        </ul>
+    </section>    
+    
+    <section class="infoPanel left" id="auto">
+      <a onclick = "start_window('auto')">&square;</a>
+	  <h1>Auto</h1>
+        <ul>
+          <li>
+            Cubes: 3
+          </li>
+          <li>
+            Location: Switch
+          </li>
+          <li>
+            Accuracy: Good
+          </li>
+        </ul>
+    </section>
+
+    <section class="infoPanel right" id="tele">
+      <a>&square;</a>
+	  <h1>Teleop</h1>
+        <ul>
+          <li>
+            Max. Cubes: 10
+          </li>
+          <li>
+            Speed: Fast
+          </li>
+          <li>
+            Accuracy: Not bad
+          </li>
+        </ul>
+    </section>
+	<footer>
+	
+	</footer>
+</body>

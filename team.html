@@ -28,10 +28,29 @@
 		console.log("Starting "+window);
 	}
 	
-	ipcRenderer.on("set-data", function(e, data){
-		console.log*(data);
-	});
+	templates = {
+		"general":"<h1>$NUMBER</h1>\n<ul>\n<li>$NAME</li>\n<li>Ranking: $RANK ($RPA RPA)</li>\n<li>OPR:$OPR</li>\n<li>DRP:$DPR</li>\n</ul>\n",
+		"tele":"<a>&square;</a>\n<h1>Teleop</h1>\n<ul>\n<li>$MAX_CUBES</li>\n<li>$AVERAGE_CUBES</li>\n<li>$AVERAGE_SCALE_CUBES</li>\n<li>$MAX_SCALE_CUBES</li>\n<li>$AVERAGE_SWITCH_CUBES</li>\n<li>$MAX_SWITCH_CUBES</li>\n<li>$AVERAGE_VAULT_CUBES</li>\n<li>$MAX_VAULT_CUBES</li>\n</ul>"
+	}
 	
+	ipcRenderer.on("set-data", function(e, data){
+		console.log(data);
+		document.getElementById("general").innerHTML=templates["general"].replace("$NUMBER", data["general"]["number"])
+																		 .replace("$NAME", data["general"]["name"])
+																		 .replace("$RANK", data["general"]["rank"])
+																		 .replace("$RPA", data["general"]["rpa"])	
+																		 .replace("$OPR", data["general"]["opr"])
+																		 .replace("$DPR", data["general"]["dpr"])
+																		 
+		document.getElementById("tele").innerHTML=templates["tele"].replace("$MAX_CUBES", "Average Cubes: "+data["averages"]["Average Total"])
+																		 .replace("$AVERAGE_CUBES", "Max Cubes: "+data["averages"]["Max Total"])
+																		 .replace("$AVERAGE_SCALE_CUBES", "Average Scale: "+data["averages"]["Average Scale"])
+																		 .replace("$MAX_SCALE_CUBES", "Max Scale: "+data["averages"]["Max Scale"])
+																		 .replace("$AVERAGE_SWITCH_CUBES", "Average Switch: "+data["averages"]["Average Switch"])	
+																		 .replace("$MAX_SWITCH_CUBES", "Max Switch: "+data["averages"]["Max Switch"])
+																		 .replace("$AVERAGE_VAULT_CUBES", "Average Vault: "+data["averages"]["Average Vault"])
+																		 .replace("$MAX_VAULT_CUBES", "Max Vault: "+data["averages"]["Max Vault"])
+	});
 	
 </script>
 
@@ -44,23 +63,9 @@
 	
     
     <section class="infoPanel left" id="general">
-      
-	  <h1>2708</h1>
-        <ul>
-          <li>
-            Lake Effect Robotics
-          </li>
-          <li>
-            Ranking: 1 (4 RPA)
-          </li>
-          <li>
-            OPR:1000
-          </li>
-          <li>
-            DRP:1000
-          </li>
-        </ul>
     </section>
+   
+   
     <img class="robotImage right" src="https://i.imgur.com/uMdFbCvm.jpg">
     </img>  
     <section class="infoPanel left" id="pit">
@@ -98,20 +103,7 @@
         </ul>
     </section>
 
-    <section class="infoPanel right" id="tele">
-      <a>&square;</a>
-	  <h1>Teleop</h1>
-        <ul>
-          <li>
-            Max. Cubes: 10
-          </li>
-          <li>
-            Speed: Fast
-          </li>
-          <li>
-            Accuracy: Not bad
-          </li>
-        </ul>
+    <section class="infoPanel right" id="tele">    
     </section>
 	<footer>
 	

@@ -45,6 +45,10 @@
 	
 	ipcRenderer.send("get-teams");
 	
+	function setLocation(){
+		ipcRender.send("set-location", document.getElementById("location").value);
+	}
+	
   </script>
   
   <datalist id="teams">
@@ -137,6 +141,14 @@
         </table>
       </td>
     </tr>
+      <tr>
+        <td>Data Location:</td>
+        <td>
+          <table><tr><td>
+          <input type="text" id="location" style="width:75%"><button onclick="setLocation()">Set</button>
+          </td></tr></table>
+        </td>
+      </tr>
   </table>
   </div>
   <div class="robotList right">
@@ -144,6 +156,8 @@
     <table id="table">
     </table>
   </section>
+  </div>
+  
 </body>
 
 

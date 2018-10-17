@@ -56,7 +56,7 @@ ipcMain.on("get-teams", function(e){
 });
 
 ipcMain.on("show-team", function(e, team){
-	window = new BrowserWindow({width:1000, height:1000, frame: false, show:false})
+	window = new BrowserWindow({width:800, height:600, frame: false, show:false, maxWidth:800})
 	window.loadFile("team.html")
 	window.once('ready-to-show', function() {
 		window.webContents.send("set-team", team);

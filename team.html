@@ -30,7 +30,7 @@
 	
 	templates = {
 		"general":"<h1>$NUMBER</h1>\n<ul>\n<li>$NAME</li>\n<li>Ranking: $RANK ($RPA RPA)</li>\n<li>OPR:$OPR</li>\n<li>DRP:$DPR</li>\n</ul>\n",
-		"tele":"<a>&square;</a>\n<h1>Teleop</h1>\n<ul>\n<li>$MAX_CUBES</li>\n<li>$AVERAGE_CUBES</li>\n<li>$AVERAGE_SCALE_CUBES</li>\n<li>$MAX_SCALE_CUBES</li>\n<li>$AVERAGE_SWITCH_CUBES</li>\n<li>$MAX_SWITCH_CUBES</li>\n<li>$AVERAGE_VAULT_CUBES</li>\n<li>$MAX_VAULT_CUBES</li>\n</ul>"
+		"tele":"<a><h1>Teleop</h1></a>\n<ul>\n<li>$MAX_CUBES</li>\n<li>$AVERAGE_CUBES</li>\n<li>$AVERAGE_SCALE_CUBES</li>\n<li>$MAX_SCALE_CUBES</li>\n<li>$AVERAGE_SWITCH_CUBES</li>\n<li>$MAX_SWITCH_CUBES</li>\n<li>$AVERAGE_VAULT_CUBES</li>\n<li>$MAX_VAULT_CUBES</li>\n</ul>"
 	}
 	
 	ipcRenderer.on("set-data", function(e, data){
@@ -61,50 +61,51 @@
 		<a class="close" id="min" onclick="win_min()">&#95;</a>
 	</header>
 	
-    
-    <section class="infoPanel left" id="general">
-    </section>
-   
-   
-    <img class="robotImage right" src="https://i.imgur.com/uMdFbCvm.jpg">
-    </img>  
-    <section class="infoPanel left" id="pit">
-      <a>&square;</a>
-	  <h1>Pit Scouting</h1>
-        <ul>
-          <li>
-            Mechanism: Elevator
-          </li>
-          <li>
-            Speed: Fast
-          </li>
-          <li>
-            Drivetrain: Ideal
-          </li>
-          <li>
-            Skill: Highly Variable
-          </li>
-        </ul>
-    </section>    
-    
-    <section class="infoPanel left" id="auto">
-      <a onclick = "start_window('auto')">&square;</a>
-	  <h1>Auto</h1>
-        <ul>
-          <li>
-            Cubes: 3
-          </li>
-          <li>
-            Location: Switch
-          </li>
-          <li>
-            Accuracy: Good
-          </li>
-        </ul>
-    </section>
+    <div class="flex">  
+      <section class="infoPanel" id="general">
+        <a><h1>General</h1></a>
+      </section>
 
-    <section class="infoPanel right" id="tele">    
-    </section>
+
+      <img class="robotImage" src="https://i.imgur.com/uMdFbCvm.jpg">
+      </img>  
+      <section class="infoPanel" id="pit">
+        <a><h1>Pit Scouting</h1></a>
+          <ul>
+            <li>
+              Mechanism: Elevator
+            </li>
+            <li>
+              Speed: Fast
+            </li>
+            <li>
+              Drivetrain: Ideal
+            </li>
+            <li>
+              Skill: Highly Variable
+            </li>
+          </ul>
+      </section>    
+
+      <section class="infoPanel" id="auto">
+        <a onclick = "start_window('auto')"><h1>Auto</h1></a>
+          <ul>
+            <li>
+              Cubes: 3
+            </li>
+            <li>
+              Location: Switch
+            </li>
+            <li>
+              Accuracy: Good
+            </li>
+          </ul>
+      </section>
+
+      <section class="infoPanel" id="tele">    
+        <a><h1>Tele</h1></a>
+      </section>
+    </div>
 	<footer>
 	
 	</footer>

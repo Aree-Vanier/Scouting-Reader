@@ -186,20 +186,45 @@ footer{
 	font-size:40px;
     margin-left:10%;
     font-weight:bold;
+    padding-top:0px;
+}
+
+
+.flex{
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+  margin-top:40px
 }
 
 .infoPanel{
   background-color:/*ac2*/#424242;
   display:block;
   padding:15px;
+  margin:15px;
   color:/*txt*/#f5f5f5;
+  min-width:200px;
+  flex-grow:1;
+}
+
+#general{
+  flex-grow:2;
+}
+#pit{
+  flex-grow:0.5;
+}
+#auto{
+  
+}
+#tele{
+  flex-grow:2;
 }
 
 .infoPanel ul{
   list-style-type:none;
 }
 
-.infoPanel a{
+/*.infoPanel a{
   display:block;
   float:right;
   position:relative;
@@ -207,7 +232,7 @@ footer{
   margin:0px;
   padding:0px;
   font-size:20px;
-}
+} */
 
 .left{
   float:left;
@@ -239,7 +264,9 @@ footer{
 
 .robotImage{
   height:auto;
-  width:45%;
+  min-height:500px;
+  margin:15px;
+  flex-grow:1;
 }
 
 h1{

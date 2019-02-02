@@ -21,7 +21,6 @@ body{
 	background-color:/*bg*/#303030;
   -webkit-user-select:none;
 	color:white;
-	min-width: 700px;
 }
 
 a{
@@ -328,9 +327,8 @@ header .stacked{
 
 header h1{
   margin:0px;
-  margin-left:10vmin;
+  margin-left:10%;
   font-size:50px;
-  width:17vmin;
   float:left;
 	padding:0px !important;
 }

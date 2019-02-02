@@ -15,5 +15,7 @@
     "electron": "^4.0.3",
     "electron-window-manager": "^1.0.6"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "electron-packager": "^13.0.1"
+  }
 }

@@ -1,0 +1,412 @@
+/*Colour Palette
+
+	Edge               eg  000000
+  	Background Color:  bg  303030
+	Accent 1:		  ac1  212121
+	Accent 2:         ac2  424242
+	Accent 3:		  ac3  9e9e9e
+	Text:			  txt  f5f5f5
+	Highlight		   ht  628b23
+*/
+
+/* Sroll bars are just plain ugly*/
+::-webkit-scrollbar {
+    display: none;
+}
+
+body{
+	font-family:sans-serif;
+	padding:0px;
+	margin:0px;
+	background-color:/*bg*/#303030;
+  -webkit-user-select:none;
+	color:white;
+	min-width: 700px;
+}
+
+a{
+    -webkit-app-region: no-drag;
+	cursor:pointer;
+}
+
+.topBar{
+	margin:0px;
+    overflow:hidden;
+	background-color:/*eg*/#000000;
+	color:/*txt*/#f5f5f5;
+    -webkit-app-region: drag;
+	top:0;
+	width:100%;
+}
+
+.close{
+    font-family:sans-serif !important;
+    float:right;
+    padding:5px 15px 5px 15px;
+    font-size:20px;
+	text-align:center;
+}
+
+.close:hover{
+	color:/*ac2*/#424242;'
+	font-weight:bold;
+}
+
+.close#close:hover{
+	background-color:red;
+}
+
+.close#min:hover{
+	background-color:/*ac3*/#9e9e9e;
+}
+
+.close#max:hover{
+	background-color:/*ac3*/#9e9e9e;
+}
+
+.menu{
+    font-family:sans-serif !important;
+    float:left;
+    padding:5px 15px 5px 15px;
+    font-size:20px;
+}
+.menu:hover{
+	color:/*ac2*/#424242;'
+	font-weight:bold;
+	background-color:/*ac3*/#9e9e9e;
+}
+
+
+
+footer{
+	position:absolute;
+	bottom:0;
+	width:100%;
+	margin:0px;
+    overflow:hidden;
+	background-color:/*eg*/#000000;
+	color:/*txt*/#f5f5f5;
+}
+
+
+
+.overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+}
+
+.overlay content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+	width:70%;
+    color: /*txt*/#f5f5f5;
+    transform: translate(-50%,-50%);
+	background-color:/*bg*/#303030;
+	padding:20px;
+}
+
+.overlay content h1{
+    margin:auto;
+    font-size: 30px;
+	text-align:center;
+}
+
+.overlay a{
+    text-align:center;
+    padding:5px 15px 5px 15px;
+	margin:auto;
+    font-size:30px;
+	background-color:/*ht*/#628b23;
+	color:/*txt*/#f5f5f5;
+	border-radius:10px;
+    display:block;
+}
+
+.text{
+  padding:2px 5px;
+  border:none;
+  border-radius:5px;
+  font-size:16px;
+  width:80%;
+}
+
+.infoPanel h1{
+	font-size:40px;
+    margin-left:10%;
+    font-weight:bold;
+    padding-top:0px;
+}
+
+
+.flex{
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+  margin-top:40px
+}
+
+.infoPanel{
+  background-color:/*ac2*/#424242;
+  display:block;
+  padding:15px;
+  margin:15px;
+  color:/*txt*/#f5f5f5;
+  min-width:200px;
+  flex-grow:1;
+}
+
+#general{
+  flex-grow:2;
+}
+#pit{
+  flex-grow:0.5;
+}
+#auto{
+
+}
+#tele{
+  flex-grow:2;
+}
+
+.infoPanel ul{
+  list-style-type:none;
+}
+
+/*.infoPanel a{
+  display:block;
+  float:right;
+  position:relative;
+  top:10px;
+  margin:0px;
+  padding:0px;
+  font-size:20px;
+} */
+
+.left{
+  float:left;
+  margin-left:20px;
+  margin-top:15px;
+  margin-right:10px;
+  margin-bottom:10px;
+  width:40%;
+  clear:left;
+}
+
+.right{
+  float:right;
+  margin-right:20px;
+  margin-top:15px;
+  margin-left:10px;
+  margin-bottom:10px;
+  width:40%;
+  clear:right;
+}
+.middle{
+  float:middle;
+  margin-right:20px;
+  margin-top:15px;
+  margin-left:20px;
+  margin-bottom:10px;
+  clear:both;
+}
+
+.robotImage{
+  height:auto;
+  min-height:500px;
+  margin:15px;
+  flex-grow:1;
+}
+
+h1{
+  padding-top:40px;
+  color: /*txt*/#f5f5f5;
+  margin-left:10%;
+}
+
+.selector {
+  color:white;
+  font-size:20px;
+  vertical-align:center;
+}
+
+.selector input{
+  margin-left: 10px;
+  width:75px;
+  border:none;
+  padding: 3px 5px;
+  font-size:inherit;
+}
+
+.selector button{
+  margin:0px;
+  border:none;
+  padding:3px 5px;
+  margin-left:10px;
+  color:white;
+  background-color:#424242;
+  font-size:inherit;
+}
+
+.selector table table{
+  margin:0px;
+  padding:0px;
+}
+
+.robotList{
+  background-color:/*ac2*/#424242;
+  display:block;
+  padding:15px;
+  color:/*txt*/#f5f5f5;
+  width:auto;
+  margin-right:20%
+}
+.robotList h1{
+	font-size:40px;
+    margin-left:10%;
+    padding-top:0px;
+    font-weight:bold;
+}
+.robotList table{
+  border-collapse:collapse;
+}
+.robotList td{
+  text-align:center;
+  border-left:1px solid white;
+  border-bottom:3px solid white;
+  padding:3px 5px;
+}
+.robotList  tr td:first-child{
+  border-left: 0;
+}
+.robotList  tr td:last-child{
+  border-right: 0;
+}
+
+/*
+	HH  HH  EEEEEE  LL       PPPPP      MM   MM  EEEEEE  !!
+	HH  HH  EE      LL       PP   PP    MMM MMM  EE      !!
+  HHHHHH  EEEEE   LL       PPPPP      MM M MM  EEEEE   !!
+	HH  HH  EE      LL       PP         MM   MM  EE
+  HH  HH  EEEEEE  LLLLLLL  PP         MM   MM  EEEEEE  !!
+*/
+
+header{
+  background-color:#4a2a7c;
+  height:72px;
+}
+
+header .stackedContainer{
+  display:block;
+  float:left;
+}
+
+header .stacked{
+  display:block;
+  width:100%;
+  float:left;
+  font-size:20px;
+	margin-left:10px;
+}
+
+.stackedContainer #name{
+  font-size:30px;
+}
+
+.stackedContainer #matches{
+  font-size:20px
+}
+
+header h1{
+  margin:0px;
+  margin-left:10vmin;
+  font-size:50px;
+  width:17vmin;
+  float:left;
+	padding:0px !important;
+}
+header h2{
+  float:right;
+  display:block;
+}
+
+.general table{
+  width:65%;
+  float:right;
+}
+
+.title{
+  text-align:right;
+  font-size:20px;
+	width:15%;
+}
+
+.spacer{
+	width:6vmin !important;
+	height:6vmin !important;
+}
+
+.left{
+  float:left;
+  width:30%;
+}
+
+.general td{
+}
+
+.pieContainer{
+  width:90%;
+  margin:5%;
+  /* Remove these lines when running with JS */
+  /* padding-bottom:90%;
+  border:1px solid white; */
+}
+
+.pie {
+  width:100%;
+  height:100%;
+  /* Basic layout */
+  display: inline-block;
+  border-radius: 50%;
+
+  /* fixes a minor clipping issue in Chrome */
+  background-origin: border-box;
+}
+
+.pieContainer .caption{
+  width:100%;
+  text-align:center;
+	height:20px;
+	overflow:hidden;
+}
+
+.pie .inner{
+  display:block;
+  width:80%;
+  height:80%;
+  margin:10%;
+  background-color:black;
+  border-radius:50%;
+  overflow:hidden;
+}
+
+.pie .inner table{
+  font-family:sans-serif;
+  text-align:center;
+  color:white;
+  margin:auto;
+  height:60%;
+  margin-top:4%;
+  font-size:150%;
+  float:none !important;
+  width:50%;
+}

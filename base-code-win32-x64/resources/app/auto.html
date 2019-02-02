@@ -1,0 +1,44 @@
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<script>
+	const {ipcRenderer} = require('electron')
+
+	console.log("INIT");
+	
+	function win_close(){
+		ipcRenderer.send('window-close', "auto");
+	}
+	function win_max() {
+		ipcRenderer.send('window-max', "auto");
+	}
+	function win_min() {
+		ipcRenderer.send('window-min', "auto");
+	}
+
+	
+</script>
+
+<body>
+	<header>
+		<a class="close" id="close" onclick="win_close()">&times;</a>
+		<a class="close" id="max" onclick="win_max()">&square;</a>
+		<a class="close" id="min" onclick="win_min()">&#95;</a>
+	</header>
+	 
+    <h1>2708  Auto</h1>
+    
+    <section class="infopanel left">
+      <h1>Panel 1</h1>
+    </section>    
+    <section class="infopanel right">
+        <h1>Panel 2</h1>
+    </section>
+
+    <section class="infopanel middle">
+      <h1>Panel 3</h1>
+    </section>
+    
+	<footer>
+	
+	</footer>
+</body>

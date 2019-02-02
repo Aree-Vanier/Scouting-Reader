@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <script>
+	const {ipcRenderer} = require('electron')
+
+	console.log("INIT");
+
+	function win_close(){
+		ipcRenderer.send('window-close', "index");
+	}
+	function win_max() {
+		ipcRenderer.send('window-max', "index");
+	}
+	function win_min() {
+		ipcRenderer.send('window-min', "index");
+	}
+
+	ipcRenderer.on("get-teams", function(e, teams){
+		console.log(teams);
+		var template="<tr>\n\t<td>$TEAM</td>\n\t<td>$RANK</td>\n\t<td>$SCORE</td>\n\t<td>$OPR</td>\n</tr>"
+		var autocompleteOut = "";
+		var tableOut = "<tr>\n<td><a>Team</a></td>\n<td><a>Rank</a></td>\n<td><a>RS</a></td>\n<td><a>OPR</a></td>\n</tr>\n";
+		for(var i=0; i<teams.length; i++){
+			autocompleteOut+="<option value='"+teams[i]["number"]+"'/>";
+			tableOut+=template.replace("$TEAM", teams[i]["number"])
+								.replace("$RANK", 1)
+								.replace("$SCORE", 4)
+								.replace("$OPR", 100)
+		}
+		document.getElementById("teams").innerHTML=autocompleteOut;
+		document.getElementById("table").innerHTML=tableOut;
+	});
+
+	function showTeam(mode){
+		if(mode=="solo"){
+			ipcRenderer.send("show-team", document.getElementById("soloTeam").value);
+		}
+	}
+
+	ipcRenderer.send("get-teams");
+
+	function setLocation(){
+		ipcRender.send("set-location", document.getElementById("location").value);
+	}
+
+  </script>
+
+  <datalist id="teams">
+	<option value="2708"/>
+	<option value="2706"/>
+	<option value="2762"/>
+  </datalist>
+</head>
+<body>
+  <div class="topBar">
+		<a class="close" id="close" onclick="win_close()">&times;</a>
+		<a class="close" id="max" onclick="win_max()">&square;</a>
+		<a class="close" id="min" onclick="win_min()">&#95;</a>
+  </div>
+
+  <h1>LER Official Scouting Database</h1>
+  <div style="margin-left:7%; float:left">
+    <table class="selector">
+      <tr>
+        <td>
+          View Team
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <input list="teams" name="teams" id="soloTeam">
+              </td>
+              <td>
+                <button onclick="showTeam('solo')">View</button>
+              </td>
+            </tr>
+          </table>
+        </td>
+    </tr>
+    <tr>
+      <td>
+        View Alliance
+      </td>
+      <td>
+        <table>
+          <tr>
+            <td>
+          <input list="teams" name="teams" id="soloAlliance1">
+          </td>
+          <td>
+          <input list="teams" name="teams" id="soloAlliance1">
+          </td>
+          <td>
+          <input list="teams" name="teams" id="soloAlliance1">
+          </td>
+            <td>
+          <button onclick="showTeam('alliance')">View</button>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+      <tr>
+      <td>
+        Compare Alliances
+      </td>
+      <td>
+        <table>
+          <tr>
+            <td>
+              <input list="teams" name="teams" id="multiAlliance1">
+              </td>
+              <td>
+              <input list="teams" name="teams" id="multiAlliance2">
+              </td>
+              <td>
+              <input list="teams" name="teams" id="multiAlliance3">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input list="teams" name="teams" id="multiAlliance4">
+              </td>
+              <td>
+              <input list="teams" name="teams" id="multiAlliance5">
+              </td>
+              <td>
+              <input list="teams" name="teams" id="multiAlliance6">
+            </td>
+            <td>
+              <button onclick="showTeam('solo')">View</button>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+      <tr>
+        <td>Data Location:</td>
+        <td>
+          <table><tr><td>
+          <input type="text" id="location" style="width:75%"><button onclick="setLocation()">Set</button>
+          </td></tr></table>
+        </td>
+      </tr>
+  </table>
+  </div>
+  <div class="robotList right">
+    <h1>Robots</h1>
+    <table id="table">
+    </table>
+  </section>
+  </div>
+
+</body>
+
+
+</html>

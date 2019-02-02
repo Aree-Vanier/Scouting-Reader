@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+  <header>
+		<a class="close" id="close" onclick="win_close()">&times;</a>
+		<a class="close" id="max" onclick="win_max()">&square;</a>
+		<a class="close" id="min" onclick="win_min()">&#95;</a>
+  </header>
+  
+  <h1>LER Offical Scouting Database</h1>
+  <div style="margin-left:7%">
+    <table class="selector">
+      <tr>
+        <td>
+          View Team
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <input list="browsers" name="browser">
+                <datalist id="teams">
+                  <option value="2708">
+                  <option value="2706">
+                  <option value="2762">
+                </datalist>
+              </td>
+              <td>
+                <button>View</button>
+              </td>
+            </tr>
+          </table>
+        </td>
+    </tr>
+    <tr>
+      <td>
+        View Alliance
+      </td>
+      <td>
+        <table>
+          <tr>
+            <td>
+          <input list="browsers" name="browser">
+          <datalist id="teams">
+            <option value="2708">
+            <option value="2706">
+            <option value="2762">
+          </datalist>
+          </td>
+          <td>
+          <input list="browsers" name="browser">
+          <datalist id="teams">
+            <option value="2708">
+            <option value="2706">
+            <option value="2762">
+          </datalist>
+          </td>
+          <td>
+          <input list="browsers" name="browser">
+          <datalist id="teams">
+            <option value="2708">
+            <option value="2706">
+            <option value="2762">
+          </datalist>
+          </td>
+            <td>
+          <button>View</button>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+      <tr>
+      <td>
+        Compare Alliances
+      </td>
+      <td>
+        <table>
+          <tr>
+            <td>
+              <input list="browsers" name="browser">
+              <datalist id="teams">
+                <option value="2708">
+                <option value="2706">
+                <option value="2762">
+              </datalist>
+              </td>
+              <td>
+              <input list="browsers" name="browser">
+              <datalist id="teams">
+                <option value="2708">
+                <option value="2706">
+                <option value="2762">
+              </datalist>
+              </td>
+              <td>
+              <input list="browsers" name="browser">
+              <datalist id="teams">
+                <option value="2708">
+                <option value="2706">
+                <option value="2762">
+              </datalist>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input list="browsers" name="browser">
+              <datalist id="teams">
+                <option value="2708">
+                <option value="2706">
+                <option value="2762">
+              </datalist>
+              </td>
+              <td>
+              <input list="browsers" name="browser">
+              <datalist id="teams">
+                <option value="2708">
+                <option value="2706">
+                <option value="2762">
+              </datalist>
+              </td>
+              <td>
+              <input list="browsers" name="browser">
+              <datalist id="teams">
+                <option value="2708">
+                <option value="2706">
+                <option value="2762">
+              </datalist>
+            </td>
+            <td>
+              <button>View</button>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  </div>
+</body>
+</html>

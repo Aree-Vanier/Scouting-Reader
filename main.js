@@ -7,7 +7,6 @@ var windows = {
 	"index":null,
 	"auto":null
 }
-	
 
 app.on('ready', function(){
 	window = new BrowserWindow({width:1000, height:1000, frame: false})
@@ -15,8 +14,8 @@ app.on('ready', function(){
 	window.show;
 	window.toggleDevTools();
 	windows["index"] = window
-	
-	
+
+
 })
 
 app.on("browser-window-created",function(e,window) {
@@ -26,12 +25,12 @@ app.on("browser-window-created",function(e,window) {
 
 /*IPC window functions*/
 ipcMain.on('window-min', function (e, window){
-   windows[window].minimize(); 
+   windows[window].minimize();
 });
 
 ipcMain.on('window-max', function (e, window){
    if (!windows[window].isMaximized()) {
-	   windows[window].maximize();          
+	   windows[window].maximize();
    } else {
 	   windows[window].unmaximize();
    }
@@ -46,7 +45,7 @@ ipcMain.on("start-window", function(e, window){
 	window2 = new BrowserWindow({width:1000, height:1000, frame: false})
 	window2.loadFile(window+".html")
 	window2.show();
-	
+
 	windows[window] = window2;
 })
 
@@ -56,7 +55,7 @@ ipcMain.on("get-teams", function(e){
 });
 
 ipcMain.on("show-team", function(e, team){
-	window = new BrowserWindow({width:800, height:600, frame: false, show:false, maxWidth:800})
+	window = new BrowserWindow({width:800, height:600, frame: false, show:false})
 	window.loadFile("team.html")
 	window.once('ready-to-show', function() {
 		window.webContents.send("set-team", team);
@@ -85,19 +84,19 @@ ipcMain.on("get-data", function(event, team){
 	fs.readFile(PATH+"2708"+".csv", 'utf-8', (err, data) => {
 		console.log(err);
 		console.log(data);
-		
+
 		var autoStart = 3;
 		var teleStart = 10;
 		var endgameStart = 19;
 		var otherStart = 21;
 		var lines = data.split("\n");
-		
+
 		var header = lines[0].split(",");
 		var out = {
 		  "general":{},
 		  "averages":{},
 		  "matches":[]};
-		
+
 		out["general"]["number"]=lines[1].split(",")[0];
 		out["general"]["name"]="team name here";
 		out["general"]["rank"]=1;
@@ -105,16 +104,16 @@ ipcMain.on("get-data", function(event, team){
 		out["general"]["opr"]=100;
 		out["general"]["dpr"]=100;
 		out["general"]["matchCount"] = lines.length-1;
-		
+
 		for(var m=1; m<lines.length; m++){
 		  data=lines[m].split(",");
 		  console.log(m+"\t"+data[1])
-		  var match = {}; 
+		  var match = {};
 		  var auto = {};
 		  var tele = {};
 		  var endgame = {};
 		  var other = {};
-		
+
 		  for(var i=1; i<data.length; i++){
 			if(header[i]=="") continue;
 			if(i<autoStart){
@@ -180,13 +179,13 @@ ipcMain.on("get-data", function(event, team){
 		  sumSwitch += sw;
 		  sumVault += vault;
 		  sumTotal += total;
-		  
+
 		  sumScaleMiss += scaleMiss;
 		  sumSwitchMiss += swMiss;
 		  sumVaultMiss += vaultMiss;
 
 		}
-		
+
 		var averages = {};
 
 		averages["Max Scale"] = maxScale;
@@ -205,10 +204,8 @@ ipcMain.on("get-data", function(event, team){
 		averages["Average Total"] = sumTotal/matchCount;
 
 		out["averages"] = averages;
-				
+
 		console.log(out);
 		event.sender.send("set-data", out);
 	});
 })
-
-

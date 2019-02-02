@@ -1,115 +1,205 @@
-<link rel="stylesheet" type="text/css" href="style.css">
+<html>
+<head>
 
-<script>
-	const {ipcRenderer} = require('electron')
-	var team = null;
-		
-	console.log("INIT");
-	
-	function win_close(){
-		ipcRenderer.send('window-close', "team:"+team);
-	}
-	function win_max() {
-		console.log(team);
-		ipcRenderer.send('window-max', "team:"+team);
-	}
-	function win_min() {
-		ipcRenderer.send('window-min', "team:"+team);
-	}
-	
-	ipcRenderer.on("set-team", function(e, number){
-		console.log(number);
-		window.team = number;
-		ipcRenderer.send("get-data", number);
-	});
-	
-	function start_window(window){
-		ipcRenderer.send('start-window', window);
-		console.log("Starting "+window);
-	}
-	
-	templates = {
-		"general":"<h1>$NUMBER</h1>\n<ul>\n<li>$NAME</li>\n<li>Ranking: $RANK ($RPA RPA)</li>\n<li>OPR:$OPR</li>\n<li>DRP:$DPR</li>\n</ul>\n",
-		"tele":"<a><h1>Teleop</h1></a>\n<ul>\n<li>$MAX_CUBES</li>\n<li>$AVERAGE_CUBES</li>\n<li>$AVERAGE_SCALE_CUBES</li>\n<li>$MAX_SCALE_CUBES</li>\n<li>$AVERAGE_SWITCH_CUBES</li>\n<li>$MAX_SWITCH_CUBES</li>\n<li>$AVERAGE_VAULT_CUBES</li>\n<li>$MAX_VAULT_CUBES</li>\n</ul>"
-	}
-	
-	ipcRenderer.on("set-data", function(e, data){
-		console.log(data);
-		document.getElementById("general").innerHTML=templates["general"].replace("$NUMBER", data["general"]["number"])
-																		 .replace("$NAME", data["general"]["name"])
-																		 .replace("$RANK", data["general"]["rank"])
-																		 .replace("$RPA", data["general"]["rpa"])	
-																		 .replace("$OPR", data["general"]["opr"])
-																		 .replace("$DPR", data["general"]["dpr"])
-																		 
-		document.getElementById("tele").innerHTML=templates["tele"].replace("$MAX_CUBES", "Average Cubes: "+data["averages"]["Average Total"])
-																		 .replace("$AVERAGE_CUBES", "Max Cubes: "+data["averages"]["Max Total"])
-																		 .replace("$AVERAGE_SCALE_CUBES", "Average Scale: "+data["averages"]["Average Scale"])
-																		 .replace("$MAX_SCALE_CUBES", "Max Scale: "+data["averages"]["Max Scale"])
-																		 .replace("$AVERAGE_SWITCH_CUBES", "Average Switch: "+data["averages"]["Average Switch"])	
-																		 .replace("$MAX_SWITCH_CUBES", "Max Switch: "+data["averages"]["Max Switch"])
-																		 .replace("$AVERAGE_VAULT_CUBES", "Average Vault: "+data["averages"]["Average Vault"])
-																		 .replace("$MAX_VAULT_CUBES", "Max Vault: "+data["averages"]["Max Vault"])
-	});
-	
-</script>
+	<link rel="stylesheet" type="text/css" href="style.css">
 
-<body>
-	<header>
+
+  <script>
+
+
+		function win_close(){
+			ipcRenderer.send('window-close', "index");
+		}
+		function win_max() {
+			ipcRenderer.send('window-max', "index");
+		}
+		function win_min() {
+			ipcRenderer.send('window-min', "index");
+		}
+
+    var outer = "\
+  <div class='caption'>$CAPTION</div>\n\
+  <div class='pie' style='$STYLE'>\n\
+    <div class='inner'>\n\
+      <table>\n\
+      $ROWS\n\
+      </table>\n\
+    </div>\n\
+  </div>";
+
+var row = "\
+        <tr>\n\
+          <td $BORDER>$VAL</td>\n\
+        </tr>";
+
+var style = "\
+  background-image: conic-gradient(\n\
+    $COLOURS\n\
+  );";
+
+
+function createPie(data, colours, caption, element){
+  let percent = (data.length == 1);
+
+  var rows = "";
+  var sum = 0;
+  for(var i=0; i<data.length; i++){
+    if(!percent) rows += row.replace("$VAL", data[i]);
+    else rows += row.replace("$VAL", data[i]+"%");
+    sum+=data[i];
+  }
+
+  if(percent){
+    data[1] = 100-data[0];
+    sum = 100;
+  }
+  var segments = "";
+  var segSum = 0;
+  for(i=0; i<data.length; i++){
+    var frac = 360*(data[i]/sum);
+    segments += colours[i]+" "+segSum+"deg,";
+    segSum+=frac;
+    segments += colours[i]+" "+segSum+"deg,";
+  }
+
+  segments = style.replace("$COLOURS", segments.slice(0,-1));
+
+  var out = outer.replace("$STYLE", segments).replace("$ROWS", rows).replace("$CAPTION", caption);
+
+  if(!percent) out = out.replace("$BORDER", "style='border-bottom:2px solid white'");
+  else out = out.replace("$BORDER", "")
+
+  document.getElementById(element).innerHTML = out;
+
+  console.log(out)
+
+  return(out)
+
+}
+
+    function animatePie(data, colours, caption, element, duration){
+      createPie(data, colours, caption, element);
+    }
+
+    function onLoad(){
+     createPie([10,5], ["#FFF","#0FF"], "High/Low", "cargoHeights")
+     createPie([75], ["#0F0","#F00"], "Acc High", "cargoAccuracyHigh")
+     createPie([90], ["#0F0","#F00"], "Acc Low", "cargoAccuracyLow")
+
+     createPie([7,5], ["#0FF","#FFF"], "Avg/Match", "overall")
+
+
+     createPie([10,5], ["#FFF","#0FF"], "High/Low", "hatchHeights")
+     createPie([75], ["#0F0","#F00"], "Acc High", "hatchAccuracyHigh")
+     createPie([90], ["#0F0","#F00"], "Acc Low", "hatchAccuracyLow")
+
+
+     createPie([10,5], ["#FFF","#0FF"], "Climb", "climb")
+     createPie([75], ["#0F0","#F00"], "Drive Rating", "driveRating")
+     createPie([90], ["#0F0","#F00"], "Intake Rating", "intakeRating")
+     createPie([90], ["#0F0","#F00"], "Defense", "defense")
+     resize();
+    }
+
+    function resize(){
+      let elements = document.getElementsByClassName("pie");
+      for(let i=0; i<elements.length; i++){
+        elements[i].style.height = elements[i].clientWidth+"px";
+        elements[i].parentElement.style.height = elements[i].clientWidth+20+"px";
+      }
+    }
+  </script>
+
+</head>
+<body onload="onLoad()" onresize="resize()" class="general">
+  <div class="topBar">
 		<a class="close" id="close" onclick="win_close()">&times;</a>
 		<a class="close" id="max" onclick="win_max()">&square;</a>
 		<a class="close" id="min" onclick="win_min()">&#95;</a>
-	</header>
-	
-    <div class="flex">
-      <div class="flex" style="flex-grow:1; flex-direction:column; margin-top:0px">
-      <section class="infoPanel" id="general">
-        <a><h1>General</h1></a>
-      </section>
-      
-      <section class="infoPanel" id="pit">
-        <a><h1>Pit Scouting</h1></a>
-          <ul>
-            <li>
-              Mechanism: Elevator
-            </li>
-            <li>
-              Speed: Fast
-            </li>
-            <li>
-              Drivetrain: Ideal
-            </li>
-            <li>
-              Skill: Highly Variable
-            </li>
-          </ul>
-      </section>  
+  </div>
+  <header>
+    <h1>2708</h1>
+    <div class="stackedContainer">
+      <div class="stacked">
+        Rank:1
+      <div class="stacked">
+        OPR:150
+      </div><br/>
+      <div class="stacked">
+        DPR:75
+      </div><br/>
       </div>
-
-
-      <img class="robotImage" src="https://i.imgur.com/uMdFbCvm.jpg">
-      </img>  
-
-      <section class="infoPanel" id="auto">
-        <a onclick = "start_window('auto')"><h1>Auto</h1></a>
-          <ul>
-            <li>
-              Cubes: 3
-            </li>
-            <li>
-              Location: Switch
-            </li>
-            <li>
-              Accuracy: Good
-            </li>
-          </ul>
-      </section>
-
-      <section class="infoPanel" id="tele">    
-        <a><h1>Tele</h1></a>
-      </section>
     </div>
-	<footer>
-	
-	</footer>
+    <div class="stackedContainer" style="float:right">
+      <span id="name">Lake Effect Robotics</span><br>
+      <span id="matches">Matches:15&nbsp;&nbsp;&nbsp;&nbsp;(14-1-0)</span>
+    </div>
+  </header>
+
+    <div class="left">
+      <div class="pieContainer" id="overall"></div>
+      <img src="https://i.imgur.com/uMdFbCvh.jpg" style="width:95%; margin:5%; margin-left:10%">
+    </div>
+
+  <table style="table-layout:fixed">
+    <tr>
+      <td class="title">
+        Cargo
+      </td>
+      <td>
+        <div class="pieContainer" id="cargoHeights"></div>
+      </td>
+      <td>
+        <div class="pieContainer" id="cargoAccuracyHigh"></div>
+      </td>
+      <td>
+        <div class="pieContainer" id="cargoAccuracyLow"></div>
+      </td>
+    </tr>
+    <tr>
+      <td class="title">
+        Hatches
+      </td>
+      <td>
+        <div class="pieContainer" id="hatchHeights"></div>
+      </td>
+      <td>
+        <div class="pieContainer" id="hatchAccuracyHigh"></div>
+      </td>
+      <td>
+        <div class="pieContainer" id="hatchAccuracyLow"></div>
+      </td>
+    </tr>
+    <tr style="height:6vmin"><td></td></tr>
+    <tr>
+      <td class="title"></td>
+      <td>
+      <div class="pieContainer" id="climb"></div>
+      </td>
+      <td>
+      <div class="pieContainer" id="driveRating"></div>
+      </td>
+      <td>
+      <div class="pieContainer" id="intakeRating"></div>
+      </td>
+    </tr>
+    <tr>
+      <td class="title"></td>
+      <td>
+      <div class="pieContainer" id="defense"></div>
+      </td>
+    </tr>
+  </table>
+
+  <div class="table" id="bottom">
+    <div class="column">
+    </div>
+    <div class="column">
+    </div>
+    <div class="column">
+    </div>
+    <div class="column">
+    </div>
+  </div>
 </body>
+</html>

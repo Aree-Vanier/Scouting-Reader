@@ -1,5 +1,5 @@
 /*Colour Palette
-	
+
 	Edge               eg  000000
   	Background Color:  bg  303030
 	Accent 1:		  ac1  212121
@@ -14,10 +14,17 @@ body{
 	padding:0px;
 	margin:0px;
 	background-color:/*bg*/#303030;
-    -webkit-user-select:none;
+  -webkit-user-select:none;
+	color:white;
+	min-width: 700px;
 }
 
-header{
+a{
+    -webkit-app-region: no-drag;
+	cursor:pointer;
+}
+
+.topBar{
 	margin:0px;
     overflow:hidden;
 	background-color:/*eg*/#000000;
@@ -26,11 +33,6 @@ header{
 	position:fixed;
 	top:0;
 	width:100%;
-}
-
-a{
-    -webkit-app-region: no-drag;
-	cursor:pointer;
 }
 
 .close{
@@ -126,54 +128,6 @@ footer{
     display:block;
 }
 
-/*Customize the label (the container)*/
-.container {
-  position: relative;
-  padding-left:17px;
-  padding-right:17px;
-  margin-bottom: 17px;
-  cursor: pointer;
-}
-
-/* Hide the browser's default radio button */
-.container input {
-  position: absolute;
-  opacity: 0;
-}
-
-/* Create a custom radio button */
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 15px;
-  width: 15px;
-  background-color: #eee;
-  border-radius: 50%;
-}
-
-/* On mouse-over, add a grey background color */
-.container:hover input ~ .checkmark {
-  background-color: #ccc;
-}
-
-/* When the radio button is checked, add a blue background */
-.container input:checked ~ .checkmark {
-  background-color: #628b23;
-}
-
-/* Create the indicator (the dot/circle - hidden when not checked) */
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-/* Show the indicator (dot/circle) when checked */
-.container input:checked ~ .checkmark:after {
-  display: block;
-}
-
 .text{
   padding:2px 5px;
   border:none;
@@ -214,7 +168,7 @@ footer{
   flex-grow:0.5;
 }
 #auto{
-  
+
 }
 #tele{
   flex-grow:2;
@@ -332,4 +286,113 @@ h1{
 }
 .robotList  tr td:last-child{
   border-right: 0;
+}
+
+
+header{
+  background-color:#4a2a7c;
+  height:8vmin;
+  padding-top:3vmin;
+  padding-bottom:1vmin;
+  padding-right:5vmin;
+}
+
+header .stackedContainer{
+  display:block;
+  float:left;
+}
+
+header .stacked{
+  display:block;
+  width:100%;
+  float:left;
+  font-size:20px;
+}
+
+.stackedContainer #name{
+  font-size:30px;
+}
+
+.stackedContainer #matches{
+  font-size:20px
+}
+
+header h1{
+  display:block;
+  margin:0px;
+  margin-left:10vmin;
+  font-size:50px;
+  width:17vmin;
+  float:left;
+  display:inline;
+}
+header h2{
+  float:right;
+  display:block;
+}
+
+.general table{
+  width:65vmin;
+  float:left;
+}
+
+.title{
+  text-align:right;
+  font-size:20px;
+}
+
+.left{
+  float:left;
+  width:35vmin;
+}
+
+.general td{
+  width:25%;
+}
+
+.pieContainer{
+  width:90%;
+  margin:5%;
+  /* Remove these lines when running with JS */
+  /* padding-bottom:90%;
+  border:1px solid white; */
+}
+
+.pie {
+  width:100%;
+  height:100%;
+  /* Basic layout */
+  display: inline-block;
+  border-radius: 50%;
+
+  /* fixes a minor clipping issue in Chrome */
+  background-origin: border-box;
+}
+
+.pieContainer .caption{
+  width:100%;
+  text-align:center;
+
+}
+
+.pie .inner{
+  display:block;
+  width:80%;
+  height:80%;
+  margin:10%;
+  background-color:black;
+  border-radius:50%;
+  overflow:hidden;
+}
+
+.pie .inner table{
+  font-family:sans-serif;
+  text-align:center;
+  color:white;
+  margin:auto;
+  height:60%;
+  margin-top:4%;
+  font-size:150%;
+  float:none !important;
+  width:50%;
 }

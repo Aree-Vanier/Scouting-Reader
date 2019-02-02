@@ -98,6 +98,10 @@ function createPie(data, colours, caption, element){
      createPie([75], ["#0F0","#F00"], "Drive Rating", "driveRating")
      createPie([90], ["#0F0","#F00"], "Intake Rating", "intakeRating")
      createPie([90], ["#0F0","#F00"], "Defense", "defense")
+
+
+     createPie([90], ["#0F0","#F00"], "Defense", "defense1")
+     createPie([90], ["#0F0","#F00"], "Defense", "defense2")
      resize();
     }
 
@@ -122,15 +126,15 @@ function createPie(data, colours, caption, element){
     <div class="stackedContainer">
       <div class="stacked">
         Rank:1
+			</div><br/>
       <div class="stacked">
         OPR:150
       </div><br/>
       <div class="stacked">
         DPR:75
       </div><br/>
-      </div>
     </div>
-    <div class="stackedContainer" style="float:right">
+    <div class="stackedContainer" style="float:right; margin-right:20px;">
       <span id="name">Lake Effect Robotics</span><br>
       <span id="matches">Matches:15&nbsp;&nbsp;&nbsp;&nbsp;(14-1-0)</span>
     </div>
@@ -138,7 +142,7 @@ function createPie(data, colours, caption, element){
 
     <div class="left">
       <div class="pieContainer" id="overall"></div>
-      <img src="https://i.imgur.com/uMdFbCvh.jpg" style="width:95%; margin:5%; margin-left:10%">
+      <img src="C:\Users\Greg\Downloads\waffles.jpg" style="width:95%; margin:5%; margin-left:10%"> <!--https://i.imgur.com/uMdFbCvh.jpg-->
     </div>
 
   <table style="table-layout:fixed">
@@ -155,6 +159,10 @@ function createPie(data, colours, caption, element){
       <td>
         <div class="pieContainer" id="cargoAccuracyLow"></div>
       </td>
+			<td class="spacer"></td>
+      <td>
+      <div class="pieContainer" id="defense"></div>
+      </td>
     </tr>
     <tr>
       <td class="title">
@@ -169,6 +177,10 @@ function createPie(data, colours, caption, element){
       <td>
         <div class="pieContainer" id="hatchAccuracyLow"></div>
       </td>
+			<td class="spacer"></td>
+      <td>
+      <div class="pieContainer" id="defense1"></div>
+      </td>
     </tr>
     <tr style="height:6vmin"><td></td></tr>
     <tr>
@@ -182,11 +194,9 @@ function createPie(data, colours, caption, element){
       <td>
       <div class="pieContainer" id="intakeRating"></div>
       </td>
-    </tr>
-    <tr>
-      <td class="title"></td>
+			<td class="spacer"></td>
       <td>
-      <div class="pieContainer" id="defense"></div>
+      <div class="pieContainer" id="defense2"></div>
       </td>
     </tr>
   </table>

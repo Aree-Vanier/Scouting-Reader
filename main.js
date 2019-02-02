@@ -57,6 +57,7 @@ ipcMain.on("get-teams", function(e){
 ipcMain.on("show-team", function(e, team){
 	window = new BrowserWindow({width:800, height:600, frame: false, show:false})
 	window.loadFile("team.html")
+	window.setAspectRatio(1.5);
 	window.once('ready-to-show', function() {
 		window.webContents.send("set-team", team);
 		window.show();

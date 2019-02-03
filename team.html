@@ -118,29 +118,33 @@ function createPie(data, colours, caption, element){
 
 </head>
 <body onload="onLoad()" onresize="resize()" class="general">
-  <div class="topBar">
-		<a class="close" id="close" onclick="win_close()">&times;</a>
-		<a class="close" id="max" onclick="win_max()">&square;</a>
-		<a class="close" id="min" onclick="win_min()">&#95;</a>
-  </div>
-	<header>
-    <h1>2708</h1>
-    <div class="stackedContainer">
-      <div class="stacked">
-        Rank:1
-      </div><br/>
-      <div class="stacked">
-        OPR:150
-      </div><br/>
-      <div class="stacked">
-        DPR:75
-      </div><br/>
-    </div>
-    <div class="stackedContainer" style="float:right; margin-right:10%;">
-      <span id="name">Lake Effect Robotics</span><br>
-      <span id="matches">Matches:15&nbsp;&nbsp;&nbsp;&nbsp;(14-1-0)</span>
-    </div>
-  </header>
+	<div style="position:fixed; width:100%">
+	  <div class="topBar">
+			<a class="close" id="close" onclick="win_close()">&times;</a>
+			<a class="close" id="max" onclick="win_max()">&square;</a>
+			<a class="close" id="min" onclick="win_min()">&#95;</a>
+	  </div>
+		<header>
+	    <h1>2708</h1>
+	    <div class="stackedContainer">
+	      <div class="stacked">
+	        Rank:1
+	      </div><br/>
+	      <div class="stacked">
+	        OPR:150
+	      </div><br/>
+	      <div class="stacked">
+	        DPR:75
+	      </div><br/>
+	    </div>
+	    <div class="stackedContainer" style="float:right; margin-right:10%;">
+	      <span id="name">Lake Effect Robotics</span><br>
+	      <span id="matches">Matches:15&nbsp;&nbsp;&nbsp;&nbsp;(14-1-0)</span>
+	    </div>
+	  </header>
+	</div>
+
+	<div style="height:115px"></div>
 
   <div class="flex">
 
@@ -210,7 +214,7 @@ function createPie(data, colours, caption, element){
 
     <br/>
 
-    <img src="https://i.imgur.com/uMdFbCvh.jpg">
+    <img src="C:\Users\Greg\Downloads\waffles.jpg">
 
   </div>
 </body>

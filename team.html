@@ -5,7 +5,7 @@
 
 
   <script>
-
+		const {ipcRenderer} = require('electron')
 
 		function win_close(){
 			ipcRenderer.send('window-close', "index");

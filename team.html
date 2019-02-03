@@ -111,6 +111,8 @@ function createPie(data, colours, caption, element){
         elements[i].style.height = elements[i].clientWidth+"px";
         elements[i].parentElement.style.height = elements[i].clientWidth+20+"px";
       }
+
+			document.getElementById("left").style.height = document.getElementById("table").clientHeight+"px";
     }
   </script>
 
@@ -121,12 +123,12 @@ function createPie(data, colours, caption, element){
 		<a class="close" id="max" onclick="win_max()">&square;</a>
 		<a class="close" id="min" onclick="win_min()">&#95;</a>
   </div>
-  <header>
+	<header>
     <h1>2708</h1>
     <div class="stackedContainer">
       <div class="stacked">
         Rank:1
-			</div><br/>
+      </div><br/>
       <div class="stacked">
         OPR:150
       </div><br/>
@@ -134,81 +136,82 @@ function createPie(data, colours, caption, element){
         DPR:75
       </div><br/>
     </div>
-    <div class="stackedContainer" style="float:right; margin-right:20px;">
+    <div class="stackedContainer" style="float:right; margin-right:10%;">
       <span id="name">Lake Effect Robotics</span><br>
       <span id="matches">Matches:15&nbsp;&nbsp;&nbsp;&nbsp;(14-1-0)</span>
     </div>
   </header>
 
-    <div class="left">
+  <div class="flex">
+
+    <div class="left" id="left">
       <div class="pieContainer" id="overall"></div>
-      <img src="C:\Users\Greg\Downloads\waffles.jpg" style="width:95%; margin:5%; margin-left:10%"> <!--https://i.imgur.com/uMdFbCvh.jpg-->
+      <div class="about">
+      I'm space to write<br/>
+      All about the bot<br/>
+      Like alot</div>
     </div>
 
-  <table style="table-layout:fixed">
-    <tr>
-      <td class="title">
-        Cargo
-      </td>
-      <td>
-        <div class="pieContainer" id="cargoHeights"></div>
-      </td>
-      <td>
-        <div class="pieContainer" id="cargoAccuracyHigh"></div>
-      </td>
-      <td>
-        <div class="pieContainer" id="cargoAccuracyLow"></div>
-      </td>
-			<td class="spacer"></td>
-      <td>
-      <div class="pieContainer" id="defense"></div>
-      </td>
-    </tr>
-    <tr>
-      <td class="title">
-        Hatches
-      </td>
-      <td>
-        <div class="pieContainer" id="hatchHeights"></div>
-      </td>
-      <td>
-        <div class="pieContainer" id="hatchAccuracyHigh"></div>
-      </td>
-      <td>
-        <div class="pieContainer" id="hatchAccuracyLow"></div>
-      </td>
-			<td class="spacer"></td>
-      <td>
-      <div class="pieContainer" id="defense1"></div>
-      </td>
-    </tr>
-    <tr>
-      <td class="title">Auto</td>
-      <td>
-      <div class="pieContainer" id="climb"></div>
-      </td>
-      <td>
-      <div class="pieContainer" id="driveRating"></div>
-      </td>
-      <td>
-      <div class="pieContainer" id="intakeRating"></div>
-      </td>
-			<td class="spacer"></td>
-      <td>
-      <div class="pieContainer" id="defense2"></div>
-      </td>
-    </tr>
-  </table>
 
-  <div class="table" id="bottom">
-    <div class="column">
-    </div>
-    <div class="column">
-    </div>
-    <div class="column">
-    </div>
-    <div class="column">
-    </div>
+    <table style="table-layout:fixed" id="table">
+      <tr>
+        <td class="title">
+          Cargo
+        </td>
+        <td>
+          <div class="pieContainer" id="cargoHeights"></div>
+        </td>
+        <td>
+          <div class="pieContainer" id="cargoAccuracyHigh"></div>
+        </td>
+        <td>
+          <div class="pieContainer" id="cargoAccuracyLow"></div>
+        </td>
+        <td class="spacer"></td>
+        <td>
+          <div class="pieContainer" id="defense"></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="title">
+          Hatches
+        </td>
+        <td>
+          <div class="pieContainer" id="hatchHeights"></div>
+        </td>
+        <td>
+          <div class="pieContainer" id="hatchAccuracyHigh"></div>
+        </td>
+        <td>
+          <div class="pieContainer" id="hatchAccuracyLow"></div>
+        </td>
+        <td class="spacer"></td>
+        <td>
+          <div class="pieContainer" id="defense1"></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="title">Auto</td>
+        <td>
+          <div class="pieContainer" id="climb"></div>
+        </td>
+        <td>
+          <div class="pieContainer" id="driveRating"></div>
+        </td>
+        <td>
+          <div class="pieContainer" id="intakeRating"></div>
+        </td>
+        <td class="spacer"></td>
+        <td>
+          <div class="pieContainer" id="defense2"></div>
+        </td>
+      </tr>
+    </table>
+
+    <br/>
+
+    <img src="https://i.imgur.com/uMdFbCvh.jpg">
+
   </div>
 </body>
 </html>

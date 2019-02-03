@@ -9,7 +9,7 @@
 	Highlight		   ht  628b23
 */
 
-/* Sroll bars are just plain ugly*/
+/*Sroll bars are just plain ugly*/
 ::-webkit-scrollbar {
     display: none;
 }
@@ -294,9 +294,9 @@ h1{
 /*
 	HH  HH  EEEEEE  LL       PPPPP      MM   MM  EEEEEE  !!
 	HH  HH  EE      LL       PP   PP    MMM MMM  EE      !!
-  HHHHHH  EEEEE   LL       PPPPP      MM M MM  EEEEE   !!
+    HHHHHH  EEEEE   LL       PPPPP      MM M MM  EEEEE   !!
 	HH  HH  EE      LL       PP         MM   MM  EE
-  HH  HH  EEEEEE  LLLLLLL  PP         MM   MM  EEEEEE  !!
+    HH  HH  EEEEEE  LLLLLLL  PP         MM   MM  EEEEEE  !!
 */
 
 header{
@@ -314,7 +314,8 @@ header .stacked{
   width:100%;
   float:left;
   font-size:20px;
-	margin-left:10px;
+  margin-left:10px;
+  width:fit-content;
 }
 
 .stackedContainer #name{
@@ -330,16 +331,45 @@ header h1{
   margin-left:10%;
   font-size:50px;
   float:left;
-	padding:0px !important;
+  padding:0px !important;
 }
 header h2{
   float:right;
   display:block;
 }
 
-.general table{
-  width:65%;
-  float:right;
+.flex{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  width:95%;
+  margin:auto;
+  align-items:stetch;
+}
+
+.general .flex>table{
+  flex-grow:3;
+}
+
+.general .left{
+  flex-grow:1;
+
+  display:flex;
+  flex-wrap:wrap;
+}
+
+.general .left .pieContainer{
+  flex-shrink:1;
+  width:50%;
+}
+
+.general .left .about{
+  flex-grow:1;
+}
+
+.general img{
+  width:75%;
+  margin:auto;
 }
 
 .title{
@@ -349,16 +379,13 @@ header h2{
 }
 
 .spacer{
-	width:6vmin !important;
-	height:6vmin !important;
+  width:6vmin !important;
+  height:6vmin !important;
 }
 
-.left{
-  float:left;
-  width:30%;
-}
 
 .general td{
+  width:20%;
 }
 
 .pieContainer{
